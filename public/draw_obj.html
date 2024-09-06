@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="css/main.css" rel="stylesheet">
+  <script src="js/milsymbol.js"></script>
+  <script src="js/logic.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/draw_obj.js"></script>
+</head>
+<body>
+<div class="container"  style="margin-top: 10px; margin-bottom: 10px;">
+  <div class="row">
+    <div class="col-md-4 col-sm-12">
+      <label for="sideSelect">Сторона</label>
+      <select class="form-select" id="sideSelect">
+        <option value="">-----------------</option>
+      </select>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+      <label for="statusSelect">Статус об'єкту</label>
+      <select class="form-select" id="statusSelect">
+        <option value="">-----------------</option>
+      </select>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+      <label for="objTypeSelect">Об'єкт чи підрозділ</label>
+      <select class="form-select" id="objTypeSelect" onchange="selectObjType()">
+        <option value="">-----------------</option>
+        <option value="item">Обʼєкт</option>
+        <option value="unit">Підрозділ</option>
+      </select>
+    </div>
+
+    <div class="col-md-4 col-sm-12 hidden" id="itemNameSelectDiv">
+      <label for="itemNameSelect">Назва обʼєкту</label>
+      <select class="form-select" id="itemNameSelect">
+        <option value="">-----------------</option>
+      </select>
+    </div>
+
+    <div class="col-md-4 col-sm-12 hidden" id="itemSizeSelectDiv">
+      <label for="sizeSelect">Розмір чи можливості</label>
+      <select class="form-select" id="sizeSelect">
+        <option value="">-----------------</option>
+      </select>
+    </div>
+
+    <div class="col-md-4 col-sm-12 hidden" id="itemTowSelectDiv">
+      <label for="towSelect">Модифікатор мобільності</label>
+      <select class="form-select" id="towSelect">
+      </select>
+    </div>
+
+    <div class="col-md-4 col-sm-12 hidden" id="groundTroopSelectDiv">
+      <label for="groundTroopSelect">Тип підрозділу</label>
+      <select class="form-select" id="groundTroopSelect">
+        <option value="">-----------------</option>
+      </select>
+    </div>
+
+    <div class="col-md-4 col-sm-12 hidden" id="unitSizeSelectDiv">
+      <label for="unitSizeSelect">Розмір підрозділу</label>
+      <select class="form-select" id="unitSizeSelect">
+        <option value="">-----------------</option>
+      </select>
+    </div>
+
+    <div class="col-md-12 col-sm-12 hidden" id="unitModifierDiv">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isHeadquartersCheckbox">
+        <label class="form-check-label" for="isHeadquartersCheckbox">
+          Орган управління (штаб) або його місцезнаходження
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isTaskGroupCheckbox">
+        <label class="form-check-label" for="isTaskGroupCheckbox">
+          Тактична група
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isHeadquartersUnitCheckbox">
+        <label class="form-check-label" for="isHeadquartersUnitCheckbox">
+          Штабний підрозділ
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isSupplyUnitCheckbox">
+        <label class="form-check-label" for="isSupplyUnitCheckbox">
+          Підрозділ забезпечення
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isAmplifiedCheckbox">
+        <label class="form-check-label" for="isAmplifiedCheckbox">
+          Посилений підрозділ
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="isReducedCheckbox">
+        <label class="form-check-label" for="isReducedCheckbox">
+          Послаблений підрозділ
+        </label>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="container text-center" style="margin-top: 10px; margin-bottom: 10px;">
+  <div class="row">
+    <div id="symbol" class="col"></div>
+  </div>
+</div>
+
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-md-3 col-sm-12" style="margin-top: 10px; margin-bottom: 10px;">
+      <button type="button" class="btn btn-primary" onclick="generateObj()">Згенерувати символ</button>
+    </div>
+    <div class="col-md-3 col-sm-12" style="margin-top: 10px; margin-bottom: 10px;">
+      <a href="/" class="btn btn-secondary">Повернутись у меню</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script>
+  initDrawObjPage();
+</script>
+
+</body>
+</html>
