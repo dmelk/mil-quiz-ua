@@ -26,6 +26,7 @@ jobs:
 
       - name: Download and copy library
         run: |
-          ssh -v -o StrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.HOST }} <<ENDSSH
+          ssh -v -o StrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.HOST }} <<'ENDSSH'
           cd /usr/share/nginx/html/js
           curl -L https://github.com/spatialillusions/milsymbol/releases/download/v2.2.0/milsymbol.js > milsymbol.js
+          ENDSSH
