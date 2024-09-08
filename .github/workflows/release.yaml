@@ -14,13 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Copy files via SSH to server
-        uses: appleboy/scp-action@v0.1.7
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@7.0.1
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          port: 22
-          key: ${{ secrets.SSH_KEY }}
-          source: "public/*"
-          target: /usr/share/nginx/public
-
+          switches: -avzr --delete
+          path: public/
+          remote_path: /usr/share/nginx/mil
+          remote_host: ${{ secrets.HOST }}
+          remote_user: ${{ secrets.USER }}
+          remote_key: ${{ secrets.SSH_KEY }}
