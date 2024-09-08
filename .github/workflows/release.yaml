@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: rsync deployments
+      - name: Deploy the code
         uses: burnett01/rsync-deployments@7.0.1
         with:
           switches: -avzr --delete
@@ -23,3 +23,9 @@ jobs:
           remote_host: ${{ secrets.HOST }}
           remote_user: ${{ secrets.USER }}
           remote_key: ${{ secrets.SSH_KEY }}
+
+      - name: Download and copy library
+        run: |
+          ssh -v -o StrictHostKeyChecking=no ${{ secrets.USER }}@${{ secrets.HOST }} << 'ENDSSH'
+          cd /usr/share/nginx/html/js
+          curl -L https://github.com/spatialillusions/milsymbol/releases/download/v2.2.0/milsymbol.js > milsymbol.js
