@@ -93,8 +93,19 @@ function generateObj() {
 
 function getItemData() {
   const itemName = document.getElementById('itemNameSelect').value;
-  const size = document.getElementById('sizeSelect').value;
+  const sizeSelectedValue = document.getElementById('sizeSelect').value;
   const tow = document.getElementById('towSelect').value;
+
+  let size = null;
+  for (const sizeItem of equipmentSizeModifiers) {
+    if (sizeItem.symbol === sizeSelectedValue) {
+      size = sizeItem;
+      break;
+    }
+  }
+  if (size === null) {
+    return {};
+  }
 
   let base = null;
   for (const groundItem of groundEquipments) {
@@ -117,7 +128,7 @@ function getItemData() {
 
   return {
     towSymbol: tow,
-    size: size,
+    size: base.hasSize ? size.symbols[base.sizeIndex] : '',
     hasSize: base.hasSize,
     genericId: base.genericId,
     scheme: base.scheme,
