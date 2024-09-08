@@ -1,10 +1,6 @@
 name: Prod release pipeline
 
 on:
-  push:
-    branches:
-      - master
-
   release:
     types: [released]
 
