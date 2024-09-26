@@ -76,7 +76,7 @@ function defineIcon(iconType, base) {
     modifierFlags.isHeadquartersUnit = false;
     symbolArray.push(base.modifier1);
   } else {
-    symbolArray.push(modifierFlags.isHeadquarters ? '98' : '00');
+    symbolArray.push(modifierFlags.isHeadquartersUnit ? '98' : '00');
   }
 
   if (typeof base.modifier2 !== 'undefined') {
